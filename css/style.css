@@ -1,0 +1,163 @@
+
+*, *::before, *::after {
+    box-sizing: border-box;
+}
+
+/* Textos */
+
+#Texto-Parabens{
+    width: auto;
+    height: 40px;
+    font-size: 28px;
+    text-align: center;
+    color: aliceblue;
+    margin-top: 0;
+    background-color:rgb(37, 1, 53);
+}
+
+#Tempo{
+    margin-top: 40px;
+    display: block;
+    background-color: #350033;
+    padding: 25px;
+    width: 400px;
+    position: inherit;
+    margin-left: auto;
+    margin-right: auto;
+    border-top: 25px;
+    border-width: 25px;
+    border-radius: 5px;
+    box-shadow: 4px 3px 2px #703e6fbe;
+}
+
+#Texto3{
+    border-right: 2px solid rgba(255, 255, 255, 0.75);
+    white-space: nowrap;
+    overflow:hidden;
+    display: inline-block;
+    font-size: 20px;
+    text-align: center;
+    color: #fff;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+
+    animation: escrever 1.65s steps(34, end) 1 forwards,
+    piscar-cursor .75s step-end infinite;
+
+}
+
+@keyframes escrever {
+    from { width: 0;}
+    to { width: 100%;}
+}
+
+@keyframes piscar-cursor {
+    from, to {border-color: transparent;}
+    50% {border-color: rgba(255, 255, 255, 0.75);}
+}
+
+#Texto2{
+    text-align: center;
+    margin-top: 80px;
+    display: block;
+    color: rgb(198, 198, 199);
+    font-size: 20px;
+    font-family: Georgia, 'Times New Roman', Times, serif;
+}
+
+#Separador{
+    margin-top: 80px;
+    margin-bottom: 0;
+    width: 350px;
+    justify-content: center;
+    border-color: rgba(128, 128, 128, 0.596);
+}
+
+body {
+    min-height: 100vh;
+    margin: 0;
+    background-color: #1b001a;
+}
+
+.spotify{
+    height: 100px;
+    margin-top: 50px;
+    margin-bottom: 10px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+}
+
+/* Imagens */
+
+.carrossel-container {
+    margin-top: 0;
+    margin-left: auto;
+    margin-right: auto;
+    width: 300px; /* Largura do contêiner visível */
+    height: 400px; /* Altura do contêiner visível */
+    overflow: hidden; /* Esconde as partes das imagens que estão fora */
+    border-radius: 5px;
+    box-shadow: 20px 40px 40px rgba(255, 255, 255, 0.1);
+    transform: translateY(0px) scale(1);
+    transition: 1s;
+}
+
+.carrossel-container:hover{
+    transform: translateY(-1px) scale(1.1);
+    transition: 1s;
+    border-radius: 2px;
+}
+
+
+.carrossel-slide {
+    /* Largura total = largura da imagem * número de imagens no slide (incluindo a repetida) */
+    width: calc(300px * 4);
+    height: 100%;
+    display: flex; /* Coloca as imagens em linha */
+    /*
+       A animação 'slide' durará 12 segundos, será linear e infinita.
+       São 3 imagens + 1 repetida = 4 "passos".
+       Se cada imagem fica visível por 3 segundos, 3s * 4 = 12s.
+    */
+    animation: slide 12s linear infinite;
+}
+
+.carrossel-slide img {
+    width: 300px; /* Cada imagem ocupa a largura do contêiner */
+    height: 100%;
+    object-fit: cover; /* Garante que a imagem cubra o espaço sem distorcer */
+}
+
+/* Definição da Animação */
+@keyframes slide {
+    0% {
+        transform: translateX(0); /* Posição inicial */
+    }
+    /*
+       Calculamos os passos da animação. Temos 3 imagens originais.
+       Cada imagem ocupa 100% / 3 = 33.33% do "tempo" antes de chegar na repetida.
+       Mas como estamos usando translateX, pensamos no deslocamento.
+    */
+    25% { /* Depois de mostrar a primeira imagem (100% / 4 = 25%) */
+        transform: translateX(0); /* Mantém a primeira imagem */
+    }
+    33.33% { /* Transição para a segunda imagem */
+        transform: translateX(-300px); /* Move para a segunda imagem (largura de 1 imagem) */
+    }
+    58.33% { /* Mantém a segunda imagem */
+        transform: translateX(-300px);
+    }
+    66.66% { /* Transição para a terceira imagem */
+        transform: translateX(-600px); /* Move para a terceira imagem (largura de 2 imagens) */
+    }
+    91.66% { /* Mantém a terceira imagem */
+        transform: translateX(-600px);
+    }
+    100% { /* Volta para a "primeira" imagem (que é a cópia no final) para loop */
+        transform: translateX(-900px); /* Move para a imagem duplicada */
+    }
+}
+
+
+
